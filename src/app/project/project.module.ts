@@ -16,7 +16,8 @@ import { RouterModule } from '@angular/router';
         path: '',
         component: ProjectComponent,
         children: [
-          { path: 'document', loadChildren: './document/document.module#DocumentModule' }
+          { path: 'document', loadChildren: './document/document.module#DocumentModule', data: { text: '文档' } },
+          { path: 'object', loadChildren: './object/object.module#ObjectModule', data: { text: '对象' } }
         ]
       },
     ])
