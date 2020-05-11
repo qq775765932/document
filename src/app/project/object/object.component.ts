@@ -37,14 +37,16 @@ export class ObjectComponent implements OnInit {
   }
   testCreate = '';
   testAssgin = '';
+  testPromise = '----> asyn';
   constructor(
     private message: NzMessageService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.doCreate();
     this.doAssgin();
     this.doProxy();
+    this.testPromise = await this.doPromise();
     this.others();
   }
 
@@ -77,11 +79,47 @@ export class ObjectComponent implements OnInit {
       apply: () => { }
     });
     console.log(proxy.name); // 33
+    Reflect.deleteProperty(proxy, 'name');
+  }
+
+  doPromise(): any {
+    return new Promise((resolve, reject) => {
+      let time = (() => {
+        setTimeout(() => {
+          resolve(`----> promise`);
+        }, 5000);
+      })();
+    });
+  }
+
+  doIterator() {
+    let iterable = {
+      0: 'a',
+      1: 'b',
+      2: 'c',
+      length: 3,
+      // [Symbol.iterator]: Array.prototype[Symbol.iterator]
+      [Symbol.iterator]: [][Symbol.iterator]
+    };
+    for (let item of iterable) {
+      console.log(item); // 'a', 'b', 'c'
+    }
+    // Generator
+    var myIterable = {
+      [Symbol.iterator]: function* () {
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+    };
+    [...myIterable] // [1, 2, 3]
   }
 
   others() {
     // hasOwnProperty
     const resultOne = Object.prototype.hasOwnProperty.call(this.first, 'nickName'); // true
+    let result = Reflect.hasOwnProperty.call(this.first, 'name');
+    result = Reflect.has(this.first, 'name');
     // indexof
     const resultTwo = this.first.nickName.indexOf('黑衣'); // 0
     // includes es6
@@ -96,6 +134,13 @@ export class ObjectComponent implements OnInit {
     const arr3 = [3, 4];
     const arr = [...arr1, ...arr2, ...arr3]; // [1, 2, 2, 3, 3, 4]
     const resultsix = { ...this.first, ...arr } // {0: 1, 1: 2, 2: 2, 3: 3, 4: 3, 5: 4, name: "桐谷和人", nickName: "黑衣剑士", property: ƒ}
+    // Reflect es6
+    Reflect.set(this.first, 'skill', '星爆气流斩');
+    Reflect.get(this.first, 'skill');
+    // Symbol es6
+    const sym = Symbol('foo');
+    String(sym) // "Symbol(foo)"
+    sym.toString() // "Symbol(foo)" 
   }
 
 }

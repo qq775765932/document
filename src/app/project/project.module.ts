@@ -17,7 +17,9 @@ import { RouterModule } from '@angular/router';
         component: ProjectComponent,
         children: [
           { path: 'document', loadChildren: './document/document.module#DocumentModule', data: { text: '文档' } },
-          { path: 'object', loadChildren: './object/object.module#ObjectModule', data: { text: '对象' } }
+          { path: 'object', loadChildren: './object/object.module#ObjectModule', data: { text: '对象' } },
+          { path: 'html5', loadChildren: './html5/html5.module#Html5Module', data: { text: 'html5' } },
+          { path: 'css3', loadChildren: () => import('./css3/css3.module').then(mod => mod.Css3Module), data: { test: 'css3' } }
         ]
       },
     ])

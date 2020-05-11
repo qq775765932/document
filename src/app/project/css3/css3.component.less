@@ -1,0 +1,130 @@
+.css3-contianer {
+  height: 100%;
+  width: 100%;
+
+  .twoD {
+    height: 200px;
+    overflow: hidden;
+
+    .flex {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 30px 30px;
+
+      .item-one {
+        height: 50px;
+        width: 50px;
+        background-color: #666666;
+        transform: rotate(30deg);
+        color: white;
+        text-align: center;
+        line-height: 50px;
+      }
+
+      .item-two {
+        height: 50px;
+        width: 50px;
+        background-color: #666666;
+        transform: skew(10deg, 10deg);
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        margin-left: 20px;
+      }
+
+      .item-three {
+        height: 50px;
+        width: 60px;
+        text-align: center;
+        background-color: #666666;
+        line-height: 50px;
+        color: white;
+        transform: translate(50px, 0px);
+      }
+    }
+  }
+
+  .threeD {
+    height: 200px;
+    overflow: hidden;
+
+    .flex {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 30px 30px;
+
+      .item-one {
+        height: 80px;
+        width: 80px;
+        text-align: center;
+        background-color: #666666;
+        line-height: 80px;
+        color: white;
+        transition: all 1s;
+
+        &:hover {
+          transform: rotateY(180deg);
+        }
+      }
+
+      .item-two {
+        height: 80px;
+        width: 80px;
+        background-color: #666666;
+        color: white;
+        text-align: center;
+        line-height: 80px;
+        margin-left: 20px;
+        transition: all 1s;
+
+        &:hover {
+          transform: skewX(30deg);
+        }
+      }
+
+      .item-three {
+        height: 80px;
+        width: 80px;
+        background-color: #666666;
+        color: white;
+        text-align: center;
+        line-height: 80px;
+        margin-left: 20px;
+        transition: all 1s;
+
+        &:hover {
+          transform: translateX(180px);
+        }
+      }
+    }
+  }
+
+  .mankan {
+    height: 600px;
+    overflow: hidden;
+
+    .item-one {
+      height: 50px;
+      width: 50px;
+      background-color: #666666;
+      animation: first 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    @keyframes first {
+      50% {
+        transform: translate(1000px,0px) rotate(720deg);
+        box-shadow: 0px 0px 10px #333333;
+        background-color: yellow;
+      }
+      100% {
+        transform: translate(0px,0px) rotate(0deg);
+        box-shadow: 0px 0px 10px #333333;
+        background-color: #666666;
+      }
+    }
+  }
+}

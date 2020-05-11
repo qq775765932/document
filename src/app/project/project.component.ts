@@ -3,15 +3,17 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 export enum routers {
-  documen = '文档',
-  object = '对象'
+  document = '文档',
+  object = '对象',
+  html5 = 'html5',
+  css3 = 'css3'
 }
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.less'],
-  providers : [
+  providers: [
     { provide: 'routers', useValue: routers }
   ]
 })
